@@ -7,7 +7,6 @@ import LoginShapes from "./login-shapes";
 import GoogleSignUp from "./google-sign-up";
 
 const LoginArea = () => {
-
   return (
     <>
       <section className="tp-login-area pb-140 p-relative z-index-1 fix">
@@ -19,7 +18,7 @@ const LoginArea = () => {
                 <div className="tp-login-top text-center mb-30">
                   <h3 className="tp-login-title">Login to OneWoodCraft.</h3>
                   <p>
-                    Don&apos;t have an account?{" "}
+                    {"Don't have an account? "}
                     <span>
                       <Link href="/register">Create a free account</Link>
                     </span>
@@ -28,7 +27,7 @@ const LoginArea = () => {
                 <div className="tp-login-option">
                   <div className="tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center">
                     <div className="tp-login-option-item has-google">
-                      <GoogleSignUp/>
+                      <GoogleSignUp />
                     </div>
                   </div>
                   <div className="tp-login-mail text-center mb-40">
