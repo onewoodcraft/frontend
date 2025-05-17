@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import Link from "next/link";
 // internal
 import { formatPriceINR } from "@/utils/price-formatter";
-import { remove_product } from "@/redux/features/cart-slice";
+import { remove_product } from "@/redux/features/cartSlice";
 
 const CartItem = ({ item }) => {
   const { _id, img, title, price, quantity } = item || {};
