@@ -12,7 +12,7 @@ import OffCanvas from '@/components/common/off-canvas';
 import useCartInfo from '@/hooks/use-cart-info';
 import CartMiniSidebar from '@/components/common/cart-mini-sidebar';
 import { openCartMini } from '@/redux/features/cartSlice';
-import logo from "@assets/img/logo/onewoodlogo.jpg";
+import logo from "@/public/assets/img/logo/onewoodlogo.jpg";
 
 const HeaderFour = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
