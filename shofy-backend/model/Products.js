@@ -84,6 +84,11 @@ const productsSchema = mongoose.Schema({
     required: true,
     min: [0, "Product price can't be negative"]
   },
+  priceINR: {
+    type: Number,
+    required: true,
+    min: [0, "Product price can't be negative"]
+  },
   discount: {
     type: Number,
     min: [0, "Product price can't be negative"]
@@ -163,11 +168,17 @@ const productsSchema = mongoose.Schema({
   timestamps: true,
 })
 
-// Pre-save middleware to generate slug
+// Pre-save middleware to generate slug and calculate INR price
 productsSchema.pre('save', function(next) {
   if (this.title && !this.slug) {
     this.slug = this.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
   }
+
+  if (this.price && (!this.priceINR || this.isModified('price'))) {
+    const conversionRate = 83;
+    this.priceINR = this.price * conversionRate;
+  }
+
   next();
 });
 
