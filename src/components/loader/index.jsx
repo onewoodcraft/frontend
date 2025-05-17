@@ -10,14 +10,16 @@ import HomeSmPrdLoader from "./home/home-sm-prd-loader";
 import HomeTwoCateLoader from "./home-2/home-2-cate-loader";
 import HomeTwoFeaturedPrdLoader from "./home-2/home-2-featured-loader";
 import HomeTwoPopularPrdLoader from "./home-2/home-2-popular-loader";
-import HomeTwoPrdLoader from "./home-2/home-2-prd-loader";
 import HomeTwoNewPrdPrdLoader from "./home-2/home-2-newPrd-loader";
 import HomeTwoBestSellPrdPrdLoader from "./home-2/home-2-bestSell-loader";
 
 // Shop loaders
-import ShopCatLoader from './shop/shop-cat-loader';
 import ShopLoader from './shop/shop-loader';
-import ShopDetailsLoader from './shop/shop-details-loader';
+import ShopCategoryLoader from './shop/shop-category-loader';
+import ShopBrandLoader from './shop/shop-brand-loader';
+import ShopHiddenLoader from './shop/shop-hidden-loader';
+import TopRatedPrdLoader from './shop/top-rated-prd-loader';
+import ColorFilterLoader from './shop/color-filter-loader';
 import PrdDetailsLoader from './prd-details-loader';
 import SearchPrdLoader from './search-prd-loader';
 
@@ -35,14 +37,16 @@ export {
   HomeTwoCateLoader,
   HomeTwoFeaturedPrdLoader,
   HomeTwoPopularPrdLoader,
-  HomeTwoPrdLoader,
   HomeTwoNewPrdPrdLoader,
   HomeTwoBestSellPrdPrdLoader,
   
   // Shop loaders
-  ShopCatLoader,
   ShopLoader,
-  ShopDetailsLoader,
+  ShopCategoryLoader,
+  ShopBrandLoader,
+  ShopHiddenLoader,
+  TopRatedPrdLoader,
+  ColorFilterLoader,
   PrdDetailsLoader,
   SearchPrdLoader
 };
