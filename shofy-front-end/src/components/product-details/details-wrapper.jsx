@@ -12,9 +12,10 @@ import { add_cart_product } from '@/redux/features/cartSlice';
 import { add_to_wishlist } from '@/redux/features/wishlist-slice';
 import { add_to_compare } from '@/redux/features/compareSlice';
 import { handleModalClose } from '@/redux/features/productModalSlice';
+import { formatPriceINR } from "@/utils/price-formatter";
 
 const DetailsWrapper = ({ productItem, handleImageActive, activeImg, detailsBottom = false }) => {
-  const { sku, img, title, imageURLs, category, description, discount, price, status, reviews, tags, offerDate } = productItem || {};
+  const { sku, img, title, imageURLs, category, description, discount, price, status, reviews, tags, offerDate, productType } = productItem || {};
   const [ratingVal, setRatingVal] = useState(0);
   const [textMore, setTextMore] = useState(false);
   const dispatch = useDispatch()
@@ -32,23 +33,32 @@ const DetailsWrapper = ({ productItem, handleImageActive, activeImg, detailsBott
 
   // handle add product
   const handleAddProduct = (prd) => {
-    dispatch(add_cart_product(prd));
+    dispatch(add_cart_product({
+      ...prd,
+      price: formatPriceINR(prd.price)
+    }));
   };
 
   // handle wishlist product
   const handleWishlistProduct = (prd) => {
-    dispatch(add_to_wishlist(prd));
+    dispatch(add_to_wishlist({
+      ...prd,
+      price: formatPriceINR(prd.price)
+    }));
   };
 
   // handle compare product
   const handleCompareProduct = (prd) => {
-    dispatch(add_to_compare(prd));
+    dispatch(add_to_compare({
+      ...prd,
+      price: formatPriceINR(prd.price)
+    }));
   };
 
   return (
     <div className="tp-product-details-wrapper">
       <div className="tp-product-details-category">
-        <span>{category.name}</span>
+        <span>{productType}</span>
       </div>
       <h3 className="tp-product-details-title">{title}</h3>
 
@@ -74,13 +84,17 @@ const DetailsWrapper = ({ productItem, handleImageActive, activeImg, detailsBott
       <div className="tp-product-details-price-wrapper mb-20">
         {discount > 0 ? (
           <>
-            <span className="tp-product-details-price old-price">${price}</span>
+            <span className="tp-product-details-price old-price">
+              {formatPriceINR(price)}
+            </span>
             <span className="tp-product-details-price new-price">
-              {" "}${(Number(price) - (Number(price) * Number(discount)) / 100).toFixed(2)}
+              {formatPriceINR(price - (price * discount) / 100)}
             </span>
           </>
         ) : (
-          <span className="tp-product-details-price new-price">${price.toFixed(2)}</span>
+          <span className="tp-product-details-price new-price">
+            {formatPriceINR(price)}
+          </span>
         )}
       </div>
 

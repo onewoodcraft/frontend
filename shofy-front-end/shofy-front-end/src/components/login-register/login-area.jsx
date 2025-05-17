@@ -19,7 +19,7 @@ const LoginArea = () => {
                 <div className="tp-login-top text-center mb-30">
                   <h3 className="tp-login-title">Login to OneWoodCraft.</h3>
                   <p>
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <span>
                       <Link href="/register">Create a free account</Link>
                     </span>

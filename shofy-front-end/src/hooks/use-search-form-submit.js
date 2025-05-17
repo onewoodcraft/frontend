@@ -21,7 +21,7 @@ const useSearchFormSubmit = () => {
       router.push(route);
       setSearchText("");
     } else {
-      router.push(`/`);
+      router.push(`/home-2`);
       setSearchText("");
       setCategory("");
     }
