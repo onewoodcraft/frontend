@@ -13,9 +13,9 @@ import FeatureAreaTwo from '@/components/features/feature-area-2';
 import InstagramAreaTwo from '@/components/instagram/instagram-area-2';
 import Footer from '@/layout/footers/footer';
 
-
 export const metadata = {
-  title: 'Shofy - Home Two',
+  title: 'OneWoodCraft - Home',
+  description: 'Discover unique handcrafted wooden furniture and decor at OneWoodCraft',
 }
 
 export default function HomePageTwo() {
