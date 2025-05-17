@@ -12,7 +12,7 @@ export default function EmailVerifyArea({ token }) {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push("/");
+      router.push("/home-2");
       notifySuccess("Register Success!");
     }
   }, [router, isSuccess]);

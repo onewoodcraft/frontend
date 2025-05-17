@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -18,6 +20,13 @@ const nextConfig = {
         pathname: "**",
       }
     ],
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@assets': path.join(__dirname, 'public/assets'),
+    };
+    return config;
   },
 }
 

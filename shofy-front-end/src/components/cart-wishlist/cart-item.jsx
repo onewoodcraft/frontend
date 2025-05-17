@@ -10,9 +10,9 @@ import { remove_product } from "@/redux/features/cartSlice";
 const CartItem = ({ item }) => {
   const { _id, img, title, price, quantity } = item || {};
   const dispatch = useDispatch();
-
-  // handle remove product
-  const handleRemovePrd = (prd) => {
+  
+    // handle remove product
+    const handleRemovePrd = (prd) => {
     dispatch(remove_product(prd));
   };
 

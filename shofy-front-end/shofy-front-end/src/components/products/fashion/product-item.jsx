@@ -9,9 +9,10 @@ import { handleProductModal } from "@/redux/features/productModalSlice";
 import { add_cart_product } from "@/redux/features/cartSlice";
 import { add_to_wishlist } from "@/redux/features/wishlist-slice";
 import { add_to_compare } from "@/redux/features/compareSlice";
+import { formatPriceINR } from "@/utils/price-formatter";
 
 const ProductItem = ({ product, style_2 = false }) => {
-  const { _id, img, category, title, reviews, price, discount, tags, status } = product || {};
+  const { _id, img, category, title, reviews, price, discount, tags, status, productType } = product || {};
   const [ratingVal, setRatingVal] = useState(0);
   const { cart_products } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
@@ -32,16 +33,25 @@ const ProductItem = ({ product, style_2 = false }) => {
 
   // handle add product
   const handleAddProduct = (prd) => {
-    dispatch(add_cart_product(prd));
+    dispatch(add_cart_product({
+      ...prd,
+      price: formatPriceINR(prd.price)
+    }));
   };
   // handle wishlist product
   const handleWishlistProduct = (prd) => {
-    dispatch(add_to_wishlist(prd));
+    dispatch(add_to_wishlist({
+      ...prd,
+      price: formatPriceINR(prd.price)
+    }));
   };
 
   // handle compare product
   const handleCompareProduct = (prd) => {
-    dispatch(add_to_compare(prd));
+    dispatch(add_to_compare({
+      ...prd,
+      price: formatPriceINR(prd.price)
+    }));
   };
 
 
@@ -128,15 +138,15 @@ const ProductItem = ({ product, style_2 = false }) => {
           {discount > 0 ? (
             <>
               <span className="tp-product-price-2 new-price">
-                ${price.toFixed(2)}{" "}
+                {formatPriceINR(price - (price * discount) / 100)}
               </span>
               <span className="tp-product-price-2 old-price">
-                {" "}${(Number(price) - (Number(price) * Number(discount)) / 100).toFixed(2)}
+                {formatPriceINR(price)}
               </span>
             </>
           ) : (
             <span className="tp-product-price-2 new-price">
-              ${price.toFixed(2)}
+              {formatPriceINR(price)}
             </span>
           )}
         </div>
