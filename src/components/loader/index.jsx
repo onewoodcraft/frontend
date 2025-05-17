@@ -42,7 +42,6 @@ export {
   HomePrdLoader,
   HomeSmPrdLoader,
   HomeTwoCateLoader,
-  HomeTwoPopularPrdLoader,
   HomeTwoPrdLoader,
   HomeTwoNewPrdPrdLoader,
   HomeTwoBestSellPrdPrdLoader,
