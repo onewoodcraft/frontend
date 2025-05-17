@@ -6,11 +6,6 @@ import HomeOfferPrdLoader from "./home/home-offer-prd-loader";
 import HomePrdLoader from "./home/home-prd-loader";
 import HomeSmPrdLoader from "./home/home-sm-prd-loader";
 
-// Home one loaders
-import HomeOnePrdLoader from './home-1/home-1-prd-loader';
-import HomeOneCatLoader from './home-1/home-1-cat-loader';
-import HomeOneFeatureLoader from './home-1/home-1-feature-loader';
-
 // Home two loaders
 import HomeTwoCateLoader from "./home-2/home-2-cate-loader";
 import HomeTwoFeaturedPrdLoader from "./home-2/home-2-featured-loader";
@@ -35,11 +30,6 @@ export {
   HomeOfferPrdLoader,
   HomePrdLoader,
   HomeSmPrdLoader,
-  
-  // Home one loaders
-  HomeOnePrdLoader,
-  HomeOneCatLoader,
-  HomeOneFeatureLoader,
   
   // Home two loaders
   HomeTwoCateLoader,
