@@ -60,17 +60,6 @@ const menu_data = [
   },
   {
     id: 4,
-    sub_menu: true,
-    title: 'Blog',
-    link: '/blog',
-    sub_menus: [
-      { title: 'Blog Standard', link: '/blog' },
-      { title: 'Blog Grid', link: '/blog-grid' },
-      { title: 'Blog Details', link: '/blog-details' },
-    ]
-  },
-  {
-    id: 5,
     single_link: true,
     title: 'Contact',
     link: '/contact',
@@ -128,17 +117,6 @@ export const mobile_menu = [
   },
   {
     id: 5,
-    sub_menu: true,
-    title: 'Blog',
-    link: '/blog',
-    sub_menus: [
-      { title: 'Blog Standard', link: '/blog' },
-      { title: 'Blog Grid', link: '/blog-grid' },
-      { title: 'Blog Details', link: '/blog-details' },
-    ]
-  },
-  {
-    id: 6,
     single_link: true,
     title: 'Contact',
     link: '/contact',
