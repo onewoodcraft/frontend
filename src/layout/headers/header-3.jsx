@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // internal
-import logo from "@/public/assets/img/logo/onewoodlogo.jpg";
+import logo from '/assets/img/logo/onewoodlogo.jpg';
 import { CartTwo, Menu, Search, Wishlist } from '@/svg';
 import Menus from './header-com/menus';
 import useSticky from '@/hooks/use-sticky';
