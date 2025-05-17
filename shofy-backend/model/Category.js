@@ -20,12 +20,33 @@ const CategorySchema = mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['main', 'gifting'],
+    enum: [
+      'main',
+      'gifting',
+      'chopping-boards',
+      'platters',
+      'trays',
+      'planters',
+      'bowls',
+      'cake-stands'
+    ],
     default: 'main'
+  },
+  giftingType: {
+    type: String,
+    required: false,
+    enum: [
+      'wedding',
+      'corporate',
+      'festive',
+      'seasonal',
+      'housewarming',
+      'anniversary'
+    ]
   },
   parent: {
     type: String,
-    required: false, // Only required for sub-categories
+    required: false,
     trim: true,
   },
   description: {
