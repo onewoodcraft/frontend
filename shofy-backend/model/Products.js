@@ -23,7 +23,7 @@ const productsSchema = mongoose.Schema({
   slug: {
     type: String,
     trim: true,
-    required: false,
+    required: true,
   },
   unit: {
     type: String,
@@ -49,15 +49,35 @@ const productsSchema = mongoose.Schema({
     },
     sizes:[String]
   }],
-  parent:{
-    type:String,
-    required:true,
-    trim:true,
-   },
-  children:{
-    type:String,
-    required:true,
-    trim:true,
+  category: {
+    id: {
+      type: ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+    }
+  },
+  giftingCategory: {
+    id: {
+      type: ObjectId,
+      ref: "Category",
+      required: false,
+    },
+    name: {
+      type: String,
+      required: false,
+    },
+    slug: {
+      type: String,
+      required: false,
+    }
   },
   price: {
     type: Number,
@@ -81,17 +101,6 @@ const productsSchema = mongoose.Schema({
     id: {
       type: ObjectId,
       ref: "Brand",
-      required: true,
-    }
-  },
-  category: {
-    name: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: ObjectId,
-      ref: "Category",
       required: true,
     }
   },
@@ -119,6 +128,18 @@ const productsSchema = mongoose.Schema({
     required: false
   },
   additionalInformation: [{}],
+  materials: [String],
+  dimensions: {
+    length: Number,
+    width: Number,
+    height: Number,
+    unit: {
+      type: String,
+      enum: ['cm', 'inches'],
+      default: 'cm'
+    }
+  },
+  care: [String],
   tags: [String],
   sizes: [String],
   offerDate:{
@@ -142,6 +163,13 @@ const productsSchema = mongoose.Schema({
   timestamps: true,
 })
 
+// Pre-save middleware to generate slug
+productsSchema.pre('save', function(next) {
+  if (this.title && !this.slug) {
+    this.slug = this.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  }
+  next();
+});
 
 const Products = mongoose.model('Products', productsSchema)
 
