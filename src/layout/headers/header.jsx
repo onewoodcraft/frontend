@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // internal
 import Menus from "./header-com/menus";
 import useSticky from "@/hooks/use-sticky";
-import logo from "@assets/img/logo/logo.svg";
+import logo from "@assets/img/logo/onewoodlogo.jpg";
 import useCartInfo from "@/hooks/use-cart-info";
 import OffCanvas from "@/components/common/off-canvas";
 import { openCartMini } from "@/redux/features/cartSlice";
@@ -23,6 +23,7 @@ const Header = () => {
   const [isCategoryActive, setIsCategoryActive] = useState(false);
   const { quantity } = useCartInfo();
   const { sticky } = useSticky();
+  const { categoryType } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   return (
     <>
@@ -55,8 +56,8 @@ const Header = () => {
               <div className="row align-items-center">
                 <div className="col-xl-2 col-lg-2 col-md-4 col-6">
                   <div className="logo">
-                    <Link href="/" className="text-2xl font-bold">
-                      OneWoodCraft
+                    <Link href="/">
+                      <Image src={logo} alt="OneWood Logo" width={150} height={50} />
                     </Link>
                   </div>
                 </div>
@@ -89,8 +90,8 @@ const Header = () => {
                         </span>
                         All Departments
                       </button>
-                      <nav className="tp-category-menu-content">
-                        <HeaderCategory categoryType="electronics" isCategoryActive={isCategoryActive} />
+                      <nav className={`tp-category-menu-content ${isCategoryActive ? 'active' : ''}`}>
+                        <HeaderCategory categoryType={categoryType} />
                       </nav>
                     </div>
                     {/* category end */}
@@ -131,8 +132,8 @@ const Header = () => {
             <div className="row align-items-center">
               <div className="col-xl-3 col-lg-3 col-md-3 col-6">
                 <div className="logo">
-                  <Link href="/" className="text-2xl font-bold">
-                    OneWoodCraft
+                  <Link href="/">
+                    <Image src={logo} alt="OneWood Logo" width={150} height={50} />
                   </Link>
                 </div>
               </div>
@@ -180,7 +181,7 @@ const Header = () => {
       {/* cart mini sidebar end */}
 
       {/* off canvas start */}
-      <OffCanvas isOffCanvasOpen={isOffCanvasOpen} setIsCanvasOpen={setIsCanvasOpen} categoryType="electronics" />
+      <OffCanvas isOffCanvasOpen={isOffCanvasOpen} setIsCanvasOpen={setIsCanvasOpen} categoryType={categoryType} />
       {/* off canvas end */}
     </>
   );
