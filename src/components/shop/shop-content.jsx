@@ -82,7 +82,7 @@ const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar
                   </div>
                 </div>
                 {products.length === 0 && <h2>No products found</h2>}
-                {products.length > 0 && (
+                {Array.isArray(products) && products.length > 0 && (
                   <div className="tp-shop-items-wrapper tp-shop-item-primary">
                     <div className="tab-content" id="productTabContent">
                       <div
@@ -93,7 +93,7 @@ const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar
                         tabIndex="0"
                       >
                         <div className="row">
-                          {filteredRows
+                          {Array.isArray(filteredRows) && filteredRows
                             .slice(pageStart, pageStart + countOfPage)
                             .map((item,i) => (
                               <div
@@ -115,7 +115,7 @@ const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar
                         <div className="tp-shop-list-wrapper tp-shop-item-primary mb-70">
                           <div className="row">
                             <div className="col-xl-12">
-                              {filteredRows
+                              {Array.isArray(filteredRows) && filteredRows
                                 .slice(pageStart, pageStart + countOfPage)
                                 .map((item,i) => (
                                   <ShopListItem key={i} product={item} />

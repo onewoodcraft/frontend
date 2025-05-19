@@ -70,54 +70,50 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
   }
   if (!isLoading && !isError && products?.data?.length > 0) {
     // products
-    let product_items = products.data;
+    let product_items = Array.isArray(products.data) ? products.data : [];
     // select short filtering
     if (selectValue) {
       if (selectValue === "Default Sorting") {
-        product_items = products.data;
+        product_items = Array.isArray(products.data) ? products.data : [];
       } else if (selectValue === "Low to High") {
-        product_items = products.data
+        product_items = Array.isArray(products.data) ? products.data
           .slice()
-          .sort((a, b) => Number(a.price) - Number(b.price));
+          .sort((a, b) => Number(a.price) - Number(b.price)) : [];
       } else if (selectValue === "High to Low") {
-        product_items = products.data
+        product_items = Array.isArray(products.data) ? products.data
           .slice()
-          .sort((a, b) => Number(b.price) - Number(a.price));
+          .sort((a, b) => Number(b.price) - Number(a.price)) : [];
       } else if (selectValue === "New Added") {
-        product_items = products.data
+        product_items = Array.isArray(products.data) ? products.data
           .slice()
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) : [];
       } else if (selectValue === "On Sale") {
-        product_items = products.data.filter((p) => p.discount > 0);
+        product_items = Array.isArray(products.data) ? products.data.filter((p) => p.discount > 0) : [];
       } else {
-        product_items = products.data;
+        product_items = Array.isArray(products.data) ? products.data : [];
       }
     }
 
     // status filter
     if (status) {
       if (status === "on-sale") {
-        product_items = product_items.filter((p) => p.discount > 0);
+        product_items = product_items.filter((p) => p?.discount > 0);
       } else if (status === "in-stock") {
-        product_items = product_items.filter((p) => p.status === "in-stock");
+        product_items = product_items.filter((p) => p?.status === "in-stock");
       }
     }
 
     // category filter
     if (category) {
       product_items = product_items.filter(
-        (p) =>
-          p.parent.toLowerCase().replace("&", "").split(" ").join("-") ===
-          category
+        (p) => p?.parent?.toLowerCase().replace("&", "").split(" ").join("-") === category
       );
     }
 
-    // category filter
+    // subcategory filter
     if (subCategory) {
       product_items = product_items.filter(
-        (p) =>
-          p.children.toLowerCase().replace("&", "").split(" ").join("-") ===
-          subCategory
+        (p) => p?.children?.toLowerCase().replace("&", "").split(" ").join("-") === subCategory
       );
     }
 
