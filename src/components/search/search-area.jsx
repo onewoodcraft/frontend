@@ -47,13 +47,13 @@ export default function SearchArea() {
 
     if (searchText && !productType) {
       product_items = all_products.filter((prd) =>
-        prd.title.toLowerCase().includes(searchText.toLowerCase())
+        (prd.title || "").toLowerCase().includes(searchText.toLowerCase())
       );
     }
     if (searchText && productType) {
       product_items = all_products.filter(
-        (prd) => prd.productType.toLowerCase() === productType.toLowerCase()
-      ).filter(p => p.title.toLowerCase().includes(searchText.toLowerCase()));
+        (prd) => (prd.productType || "").toLowerCase() === productType.toLowerCase()
+      ).filter(p => (p.title || "").toLowerCase().includes(searchText.toLowerCase()));
     }
      // Price low to high
      if (shortValue === "Price low to high") {

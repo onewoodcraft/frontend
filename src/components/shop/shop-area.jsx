@@ -121,14 +121,14 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     // category filter
     if (category) {
       product_items = product_items.filter(
-        (p) => p?.parent?.toLowerCase().replace("&", "").split(" ").join("-") === category
+        (p) => (p?.parent || "").toLowerCase().replace("&", "").split(" ").join("-") === category
       );
     }
 
     // subcategory filter
     if (subCategory) {
       product_items = product_items.filter(
-        (p) => p?.children?.toLowerCase().replace("&", "").split(" ").join("-") === subCategory
+        (p) => (p?.children || "").toLowerCase().replace("&", "").split(" ").join("-") === subCategory
       );
     }
 
@@ -139,7 +139,7 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
           const color = product.imageURLs[i]?.color;
           if (
             color &&
-            color?.name.toLowerCase().split(" ").join("-") === filterColor
+            (color?.name || "").toLowerCase().split(" ").join("-") === filterColor
           ) {
             return true; // match found, include product in result
           }
@@ -152,7 +152,7 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     if (brand) {
       product_items = product_items.filter(
         (p) =>
-          p.brand.name.toLowerCase().split(" ").join("-").replace("&", "") ===
+          (p.brand?.name || "").toLowerCase().split(" ").join("-").replace("&", "") ===
           brand
       );
     }
