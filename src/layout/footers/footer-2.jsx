@@ -36,7 +36,7 @@ const FooterTwo = () => {
                             </span>
                           </div>
                           <div className="tp-footer-contact-content">
-                            <p><a href="mailto:support@onewoodcraft.com">support@onewoodcraft.com</a></p>
+                            <p><a href="mailto:shofy@support.com">shofy@mail.com</a></p>
                           </div>
                         </div>
                         <div className="tp-footer-contact-item d-flex align-items-start">

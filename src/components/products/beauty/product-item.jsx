@@ -1,91 +1,115 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useDispatch } from 'react-redux';
-import { add_to_cart } from '@/redux/features/cartSlice';
-import { add_to_wishlist } from '@/redux/features/wishlistSlice';
-import { useRouter } from 'next/navigation';
-import { Heart, ShoppingCart } from 'lucide-react';
+import React from "react";
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
+// internal
+import { Cart, QuickView, Wishlist } from "@/svg";
+import { handleProductModal } from "@/redux/features/productModalSlice";
+import { add_cart_product } from "@/redux/features/cartSlice";
+import { add_to_wishlist } from "@/redux/features/wishlist-slice";
 
-const ProductItem = ({ product, style_2 = false }) => {
-  const { _id, title, img, price, discount, reviews } = product || {};
+const ProductItem = ({ product, prdCenter = false,primary_style=false }) => {
+  const { _id, img, title, discount, price, tags,status } = product || {};
+  const { cart_products } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const isAddedToCart = cart_products.some((prd) => prd._id === _id);
+  const isAddedToWishlist = wishlist.some((prd) => prd._id === _id);
   const dispatch = useDispatch();
-  const router = useRouter();
 
-  // handle add to cart
-  const handleAddToCart = (product) => {
-    dispatch(add_to_cart(product));
+  // handle add product
+  const handleAddProduct = (prd) => {
+    dispatch(add_cart_product(prd));
   };
-
-  // handle add to wishlist
-  const handleAddToWishlist = (product) => {
-    dispatch(add_to_wishlist(product));
+   // handle wishlist product
+   const handleWishlistProduct = (prd) => {
+    dispatch(add_to_wishlist(prd));
   };
 
   return (
-    <div className={`tp-product-item ${style_2 ? 'tp-product-item-2' : ''} mb-50`}>
-      <div className="tp-product-thumb p-relative z-index-1 fix">
+    <div
+      className={`tp-product-item-3 mb-50 ${primary_style?"tp-product-style-primary":""} ${prdCenter ? "text-center" : ""}`}
+    >
+      <div className="tp-product-thumb-3 mb-15 fix p-relative z-index-1">
         <Link href={`/product-details/${_id}`}>
-          <Image src={img} alt="product img" width={300} height={300} />
+          <Image src={img} alt="product image" width={282} height={320} />
         </Link>
+
+        <div className="tp-product-badge">
+          {status === 'out-of-stock' && <span className="product-hot">out-stock</span>}
+        </div>
+
         {/* product action */}
-        <div className="tp-product-action">
-          <div className="tp-product-action-item d-flex flex-column">
+        <div className="tp-product-action-3 tp-product-action-blackStyle">
+          <div className="tp-product-action-item-3 d-flex flex-column">
+            {isAddedToCart ? (
+              <Link
+                href="/cart"
+                className={`tp-product-action-btn-3 ${isAddedToCart?'active':''} tp-product-add-cart-btn text-center`}
+              >
+                <Cart />
+                <span className="tp-product-tooltip">View Cart</span>
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => handleAddProduct(product)}
+                className={`tp-product-action-btn-3 ${isAddedToCart?'active':''} tp-product-add-cart-btn`}
+                disabled={status === 'out-of-stock'}
+              >
+                <Cart />
+                <span className="tp-product-tooltip">Add to Cart</span>
+              </button>
+            )}
             <button
-              type="button"
-              className="tp-product-action-btn tp-product-add-cart-btn"
-              onClick={() => handleAddToCart(product)}
+              onClick={() => dispatch(handleProductModal(product))}
+              className="tp-product-action-btn-3 tp-product-quick-view-btn"
             >
-              <ShoppingCart />
-              <span className="tp-product-tooltip">Add to Cart</span>
+              <QuickView />
+              <span className="tp-product-tooltip">Quick View</span>
             </button>
-            <button
-              type="button"
-              className="tp-product-action-btn tp-product-add-wishlist-btn"
-              onClick={() => handleAddToWishlist(product)}
-            >
-              <Heart />
-              <span className="tp-product-tooltip">Add to Wishlist</span>
+
+            <button disabled={status === 'out-of-stock'} onClick={()=> handleWishlistProduct(product)} className={`tp-product-action-btn-3 
+            ${isAddedToWishlist?'active':''} tp-product-add-to-wishlist-btn`}>
+              <Wishlist />
+              <span className="tp-product-tooltip">Add To Wishlist</span>
             </button>
+
           </div>
         </div>
-        {/* product badge */}
-        {discount > 0 && (
-          <div className="tp-product-badge">
-            <span className="tp-product-badge-tag">-{discount}%</span>
-          </div>
-        )}
+
+        <div className="tp-product-add-cart-btn-large-wrapper">
+          {isAddedToCart ? (
+            <Link
+              href="/cart"
+              className="tp-product-add-cart-btn-large text-center"
+            >
+              View To Cart
+            </Link>
+          ) : (
+            <button
+              onClick={() => handleAddProduct(product)}
+              type="button"
+              className="tp-product-add-cart-btn-large"
+              disabled={status === 'out-of-stock'}
+            >
+              Add To Cart
+            </button>
+          )}
+        </div>
       </div>
-      <div className="tp-product-content">
-        <div className="tp-product-category">
-          <Link href="/shop">Beauty</Link>
+      <div className="tp-product-content-3">
+        <div className="tp-product-tag-3">
+          <span>{tags[1]}</span>
         </div>
-        <h3 className="tp-product-title">
+        <h3 className="tp-product-title-3">
           <Link href={`/product-details/${_id}`}>{title}</Link>
         </h3>
-        <div className="tp-product-rating d-flex align-items-center">
-          <div className="tp-product-rating-icon">
-            {[...Array(5)].map((_, i) => (
-              <span key={i}>
-                <i className="fas fa-star"></i>
-              </span>
-            ))}
-          </div>
-          <div className="tp-product-rating-text">
-            <span>({reviews?.length || 0} Review)</span>
-          </div>
-        </div>
-        <div className="tp-product-price-wrapper">
-          <span className="tp-product-price">${price.toFixed(2)}</span>
-          {discount > 0 && (
-            <span className="tp-product-price-old">
-              ${((price * (100 + discount)) / 100).toFixed(2)}
-            </span>
-          )}
+        <div className="tp-product-price-wrapper-3">
+          <span className="tp-product-price-3">${price.toFixed(2)}</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductItem; 
+export default ProductItem;

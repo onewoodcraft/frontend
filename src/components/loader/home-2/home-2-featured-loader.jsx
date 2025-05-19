@@ -4,10 +4,10 @@ import Loader from "../loader";
 function SingleLoader({ loading }) {
   return (
     <div
-      className="col-xl-3 col-lg-3 col-sm-6 d-flex align-items-center justify-content-center"
-      style={{ height: "350px" }}
+      className="col-lg-4 col-sm-6 d-flex align-items-center"
+      style={{ height: "280px" }}
     >
-      <Loader loading={loading} />
+      <Loader loading={loading} color="821F40" />
     </div>
   );
 }
@@ -18,9 +18,8 @@ const HomeTwoFeaturedPrdLoader = ({loading}) => {
       <SingleLoader loading={loading} />
       <SingleLoader loading={loading} />
       <SingleLoader loading={loading} />
-      <SingleLoader loading={loading} />
     </div>
   );
 };
 
-export default HomeTwoFeaturedPrdLoader; 
+export default HomeTwoFeaturedPrdLoader;
