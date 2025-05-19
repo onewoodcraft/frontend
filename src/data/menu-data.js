@@ -8,45 +8,40 @@ const menu_data = [
     link: '/shop',
     product_pages: [
       {
-        title: 'Shop Page',
+        title: 'Shop Categories',
         link: '/shop',
         mega_menus: [
-          { title: 'Only Categories', link: '/shop-category' },
-          { title: 'Shop Grid with Sideber', link: '/shop' },
+          { title: 'Chopping Boards', link: '/shop?category=chopping-boards' },
+          { title: 'Platters', link: '/shop?category=platters' },
+          { title: 'Trays', link: '/shop?category=trays' },
+          { title: 'Planters', link: '/shop?category=planters' },
+          { title: 'Bowls', link: '/shop?category=bowls' },
+          { title: 'Cake Stands', link: '/shop?category=cake-stands' },
+          { title: 'Gifting', link: '/shop?category=gifting' },
+        ]
+      },
+      {
+        title: 'Gifting Categories',
+        link: '/shop?category=gifting',
+        mega_menus: [
+          { title: 'Wedding Gifting', link: '/shop?category=gifting&subcategory=wedding-gifting' },
+          { title: 'Corporate Gifting', link: '/shop?category=gifting&subcategory=corporate-gifting' },
+          { title: 'Festive Gifting', link: '/shop?category=gifting&subcategory=festive-gifting' },
+          { title: 'Housewarming Gifting', link: '/shop?category=gifting&subcategory=housewarming-gifting' },
+          { title: 'Anniversary Gifting', link: '/shop?category=gifting&subcategory=anniversary-gifting' },
+        ]
+      },
+      {
+        title: 'Shop Pages',
+        link: '/shop',
+        mega_menus: [
+          { title: 'All Products', link: '/shop' },
           { title: 'Product Details', link: '/product-details' },
-        ]
-      },
-      {
-        title: 'Products',
-        link: '/product-details',
-        mega_menus: [
-          { title: 'Product Simple', link: '/product-details' },
-          { title: 'With Video', link: '/product-details-video' },
-          { title: 'With Countdown Timer', link: '/product-details-countdown' },
-          { title: 'Variations Swatches', link: '/product-details-swatches' },
-        ]
-      },
-      {
-        title: 'eCommerce',
-        link: '/shop',
-        mega_menus: [
           { title: 'Shopping Cart', link: '/cart' },
-          { title: 'Compare', link: '/compare' },
-          { title: 'Wishlist', link: '/wishlist' },
           { title: 'Checkout', link: '/checkout' },
-          { title: 'My account', link: '/profile' },
+          { title: 'My Account', link: '/profile' },
         ]
-      },
-      {
-        title: 'More Pages',
-        link: '/shop',
-        mega_menus: [
-          { title: 'Login', link: '/login' },
-          { title: 'Register', link: '/register' },
-          { title: 'Forgot Password', link: '/forgot' },
-          { title: '404 Error', link: '/404' },
-        ]
-      },
+      }
     ]
   },
   {
@@ -76,7 +71,6 @@ const menu_data = [
       { title: 'Blog Grid', link: '/blog-grid' },
       { title: 'Blog List', link: '/blog-list' },
       { title: 'Blog Details', link: '/blog-details' },
-      { title: 'Blog Details Full Width', link: '/blog-details-2' },
     ]
   },
   {
@@ -97,49 +91,41 @@ export const mobile_menu = [
     title: 'Products',
     link: '/shop',
     sub_menus: [
-      { title: 'Shop', link: '/shop' },
-      { title: 'Right Sidebar', link: '/shop-right-sidebar' },
-      { title: 'Hidden Sidebar', link: '/shop-hidden-sidebar' },
-      { title: 'Only Categories', link: '/shop-category' },
-      { title: 'Product Simple', link: '/product-details' },
-      { title: 'With Video', link: '/product-details-video' },
-      { title: 'With Countdown Timer', link: '/product-details-countdown' },
-      { title: 'Variations Swatches', link: '/product-details-swatches' },
+      { title: 'Chopping Boards', link: '/shop?category=chopping-boards' },
+      { title: 'Platters', link: '/shop?category=platters' },
+      { title: 'Trays', link: '/shop?category=trays' },
+      { title: 'Planters', link: '/shop?category=planters' },
+      { title: 'Bowls', link: '/shop?category=bowls' },
+      { title: 'Cake Stands', link: '/shop?category=cake-stands' },
+      { title: 'Gifting', link: '/shop?category=gifting' },
+      { title: 'Wedding Gifting', link: '/shop?category=gifting&subcategory=wedding-gifting' },
+      { title: 'Corporate Gifting', link: '/shop?category=gifting&subcategory=corporate-gifting' },
+      { title: 'Festive Gifting', link: '/shop?category=gifting&subcategory=festive-gifting' },
+      { title: 'Housewarming Gifting', link: '/shop?category=gifting&subcategory=housewarming-gifting' },
+      { title: 'Anniversary Gifting', link: '/shop?category=gifting&subcategory=anniversary-gifting' },
     ],
   },
   {
     id: 2,
     sub_menu: true,
-    title: 'eCommerce',
-    link: '/cart',
+    title: 'Shop Pages',
+    link: '/shop',
     sub_menus: [
+      { title: 'All Products', link: '/shop' },
+      { title: 'Product Details', link: '/product-details' },
       { title: 'Shopping Cart', link: '/cart' },
-      { title: 'Compare', link: '/compare' },
-      { title: 'Wishlist', link: '/wishlist' },
       { title: 'Checkout', link: '/checkout' },
-      { title: 'My account', link: '/profile' },
+      { title: 'My Account', link: '/profile' },
     ],
   },
   {
     id: 3,
-    sub_menu: true,
-    title: 'More Pages',
-    link: '/login',
-    sub_menus: [
-      { title: 'Login', link: '/login' },
-      { title: 'Register', link: '/register' },
-      { title: 'Forgot Password', link: '/forgot' },
-      { title: '404 Error', link: '/404' },
-    ],
-  },
-  {
-    id: 4,
     single_link: true,
     title: 'Coupons',
     link: '/coupon',
   },
   {
-    id: 5,
+    id: 4,
     sub_menu: true,
     title: 'Blog',
     link: '/blog',
@@ -148,11 +134,10 @@ export const mobile_menu = [
       { title: 'Blog Grid', link: '/blog-grid' },
       { title: 'Blog List', link: '/blog-list' },
       { title: 'Blog Details', link: '/blog-details' },
-      { title: 'Blog Details Full Width', link: '/blog-details-2' },
     ]
   },
   {
-    id: 6,
+    id: 5,
     single_link: true,
     title: 'Contact',
     link: '/contact',
