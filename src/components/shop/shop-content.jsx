@@ -1,7 +1,7 @@
 'use client'
 import React,{ useState} from 'react';
 import Pagination from "@/ui/Pagination";
-import ProductItem from "../products/fashion/product-item";
+import ProductItem from "../products/main/product-item";
 import CategoryFilter from "./shop-filter/category-filter";
 import ColorFilter from "./shop-filter/color-filter";
 import PriceFilter from "./shop-filter/price-filter";
@@ -13,7 +13,7 @@ import ShopTopLeft from "./shop-top-left";
 import ShopTopRight from "./shop-top-right";
 import ResetButton from "./shop-filter/reset-button";
 
-const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar}) => {
+const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar,selectedCategory,selectHandleCategory}) => {
   const {priceFilterValues,selectHandleFilter,currPage,setCurrPage} = otherProps;
   const {setPriceValue} = priceFilterValues || {};
   const [filteredRows, setFilteredRows] = useState(products);
@@ -77,7 +77,11 @@ const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar
                       />
                     </div>
                     <div className="col-xl-6">
-                      <ShopTopRight selectHandleFilter={selectHandleFilter} />
+                      <ShopTopRight 
+                        selectHandleFilter={selectHandleFilter} 
+                        selectHandleCategory={selectHandleCategory}
+                        selectedCategory={selectedCategory}
+                      />
                     </div>
                   </div>
                 </div>

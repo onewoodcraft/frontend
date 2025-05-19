@@ -12,7 +12,7 @@ const FashionCategory = () => {
     data: categories,
     isLoading,
     isError,
-  } = useGetProductTypeCategoryQuery("fashion");
+  } = useGetProductTypeCategoryQuery("woodencraft");
   const router = useRouter()
 
   // handle category route

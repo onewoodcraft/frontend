@@ -39,7 +39,7 @@ const slider_setting = {
 
 const WeeksFeatured = () => {
   const { data: products, isError, isLoading } =
-    useGetProductTypeQuery({ type: 'fashion', query: `featured=true` });
+    useGetProductTypeQuery({ type: 'woodencraft', query: `featured=true` });
   // decide what to render
   let content = null;
 

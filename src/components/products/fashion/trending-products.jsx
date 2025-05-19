@@ -37,7 +37,7 @@ const slider_setting = {
 
 const TrendingProducts = () => {
   const { data: products, isError, isLoading } =
-    useGetProductTypeQuery({ type: 'fashion', query: `new=true` });
+    useGetProductTypeQuery({ type: 'woodencraft', query: `new=true` });
   // decide what to render
   let content = null;
 

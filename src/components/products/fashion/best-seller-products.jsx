@@ -10,7 +10,7 @@ import { HomeTwoBestSellPrdPrdLoader } from '@/components/loader';
 
 const BestSellerProducts = () => {
   const { data: products, isError, isLoading } =
-    useGetProductTypeQuery({ type: 'fashion', query: `topSellers=true` });
+    useGetProductTypeQuery({ type: 'woodencraft', query: `topSellers=true` });
   // decide what to render
   let content = null;
 
@@ -41,7 +41,7 @@ const BestSellerProducts = () => {
             <div className="col-xl-12">
               <div className="tp-section-title-wrapper-2 mb-50">
                 <span className="tp-section-title-pre-2">
-                  Best Seller This Week’s
+                  Best Seller This Week's
                   <TextShapeLine />
                 </span>
                 <h3 className="tp-section-title-2">This {"Week's"} Featured</h3>

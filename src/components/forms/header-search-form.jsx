@@ -28,10 +28,12 @@ const HeaderSearchForm = () => {
           <NiceSelect
             options={[
               { value: "Select Category", text: "Select Category" },
-              { value: "electronics", text: "electronics" },
-              { value: "fashion", text: "fashion" },
-              { value: "beauty", text: "beauty" },
-              { value: "jewelry", text: "jewelry" },
+              { value: "kitchenware", text: "Kitchenware" },
+              { value: "tableware", text: "Tableware" },
+              { value: "serveware", text: "Serveware" },
+              { value: "decor", text: "Decor" },
+              { value: "furniture", text: "Furniture" },
+              { value: "lighting", text: "Lighting" },
             ]}
             defaultCurrent={0}
             onChange={selectCategoryHandle}

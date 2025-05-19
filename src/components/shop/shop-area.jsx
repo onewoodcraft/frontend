@@ -21,6 +21,7 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
   const [priceValue, setPriceValue] = useState([0, 0]);
   const [selectValue, setSelectValue] = useState("");
   const [currPage, setCurrPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(category || "");
 
   // Load the maximum price once the products have been loaded
   useEffect(() => {
@@ -43,6 +44,18 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     setSelectValue(e.value);
   };
 
+  // selectHandleCategory for dropdown
+  const selectHandleCategory = (item) => {
+    setCurrPage(1);
+    setSelectedCategory(item.value);
+    if (item.value === "") {
+      // Remove category param
+      router.push(`/${shop_right ? 'shop-right-sidebar' : 'shop'}`);
+    } else {
+      router.push(`/${shop_right ? 'shop-right-sidebar' : 'shop'}?category=${item.value.toLowerCase().replace("&", "").split(" ").join("-")}`);
+    }
+  };
+
   // other props
   const otherProps = {
     priceFilterValues: {
@@ -53,6 +66,8 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     selectHandleFilter,
     currPage,
     setCurrPage,
+    selectedCategory,
+    selectHandleCategory,
   };
   // decide what to render
   let content = null;
@@ -150,14 +165,15 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
 
     content = (
       <>
-
-      <ShopContent 
-        all_products={products.data}
-        products={product_items}
-        otherProps={otherProps}
-        shop_right={shop_right}
-        hidden_sidebar={hidden_sidebar}
-      />
+        <ShopContent 
+          all_products={products.data}
+          products={product_items}
+          otherProps={otherProps}
+          shop_right={shop_right}
+          hidden_sidebar={hidden_sidebar}
+          selectedCategory={selectedCategory}
+          selectHandleCategory={selectHandleCategory}
+        />
         
          <ShopFilterOffCanvas
           all_products={products.data}
