@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import PopupVideo from "../common/popup-video";
 
 const DetailsThumbWrapper = ({
-  imageURLs,
+  imageURLs = [],
   handleImageActive,
   activeImg,
   imgWidth = 416,
@@ -13,23 +13,38 @@ const DetailsThumbWrapper = ({
   status
 }) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    // Ensure imageURLs is an array and has at least one image
+    if (Array.isArray(imageURLs) && imageURLs.length > 0) {
+      setImages(imageURLs);
+    } else {
+      // If no imageURLs provided, create a default image object
+      setImages([{ img: activeImg || '/assets/img/product/quick-view-1.jpg' }]);
+    }
+  }, [imageURLs, activeImg]);
+
   return (
     <>
       <div className="tp-product-details-thumb-wrapper tp-tab d-sm-flex">
         <nav>
           <div className="nav nav-tabs flex-sm-column">
-            {Array.isArray(imageURLs) && imageURLs.map((item, i) => (
+            {images.map((item, i) => (
               <button
                 key={i}
                 className={`nav-link ${item.img === activeImg ? "active" : ""}`}
                 onClick={() => handleImageActive(item)}
               >
                 <Image
-                  src={item.img}
-                  alt="image"
+                  src={item.img || '/assets/img/product/quick-view-1.jpg'}
+                  alt="product image"
                   width={78}
                   height={100}
                   style={{ width: "100%", height: "100%" }}
+                  onError={(e) => {
+                    e.target.src = '/assets/img/product/quick-view-1.jpg';
+                  }}
                 />
               </button>
             ))}
@@ -39,10 +54,13 @@ const DetailsThumbWrapper = ({
           <div className="tab-pane fade show active">
             <div className="tp-product-details-nav-main-thumb p-relative">
               <Image
-                src={activeImg}
-                alt="product img"
+                src={activeImg || '/assets/img/product/quick-view-1.jpg'}
+                alt="product image"
                 width={imgWidth}
                 height={imgHeight}
+                onError={(e) => {
+                  e.target.src = '/assets/img/product/quick-view-1.jpg';
+                }}
               />
               <div className="tp-product-badge">
                 {status === 'out-of-stock' && <span className="product-hot">out-stock</span>}
