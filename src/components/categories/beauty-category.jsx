@@ -55,7 +55,7 @@ const BeautyCategory = () => {
               </a>
             </h3>
             <span className="tp-categroy-ammount-3">
-              {item.products.length} Products
+              {Array.isArray(item.products) ? item.products.length : 0} Products
             </span>
             <div className="tp-category-btn-3">
               <a

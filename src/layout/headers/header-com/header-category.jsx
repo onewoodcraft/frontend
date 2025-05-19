@@ -63,7 +63,7 @@ const HeaderCategory = ({ isCategoryActive, categoryType = "electronics" }) => {
           {item.parent}
         </a>
 
-        {item.children && (
+        {Array.isArray(item.children) && (
           <ul className="tp-submenu">
             {item.children.map((child, i) => (
               <li

@@ -53,7 +53,7 @@ const CategoryFilter = ({setCurrPage,shop_right=false}) => {
               : ""
           }
         >
-          {item.parent} <span>{item.products.length}</span>
+          {item.parent} <span>{Array.isArray(item.products) ? item.products.length : 0}</span>
         </a>
       </li>
     ));
