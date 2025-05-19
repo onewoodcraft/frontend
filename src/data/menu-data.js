@@ -1,27 +1,8 @@
-import home_1 from '@assets/img/menu/menu-home-1.jpg';
 import home_2 from '@assets/img/menu/menu-home-2.jpg';
 
 const menu_data = [
   {
     id: 1,
-    homes: true,
-    title: 'Home',
-    link: '/',
-    home_pages: [
-      {
-        img: home_1,
-        title: 'Electronics',
-        link: '/'
-      },
-      {
-        img: home_2,
-        title: 'Fashion',
-        link: '/home-2'
-      }
-    ]
-  },
-  {
-    id: 2,
     products: true,
     title: 'Products',
     link: '/shop',
@@ -69,7 +50,7 @@ const menu_data = [
     ]
   },
   {
-    id: 3,
+    id: 2,
     sub_menu: true,
     title: 'Shop',
     link: '/shop',
@@ -80,13 +61,13 @@ const menu_data = [
     ],
   },
   {
-    id: 4,
+    id: 3,
     single_link: true,
     title: 'Coupons',
     link: '/coupon',
   },
   {
-    id: 5,
+    id: 4,
     sub_menu: true,
     title: 'Blog',
     link: '/blog',
@@ -99,7 +80,7 @@ const menu_data = [
     ]
   },
   {
-    id: 6,
+    id: 5,
     single_link: true,
     title: 'Contact',
     link: '/contact',
@@ -112,24 +93,6 @@ export default menu_data;
 export const mobile_menu = [
   {
     id: 1,
-    homes: true,
-    title: 'Home',
-    link: '/',
-    home_pages: [
-      {
-        img: home_1,
-        title: 'Electronics',
-        link: '/'
-      },
-      {
-        img: home_2,
-        title: 'Fashion',
-        link: '/home-2'
-      }
-    ]
-  },
-  {
-    id: 2,
     sub_menu: true,
     title: 'Products',
     link: '/shop',
@@ -145,7 +108,7 @@ export const mobile_menu = [
     ],
   },
   {
-    id: 3,
+    id: 2,
     sub_menu: true,
     title: 'eCommerce',
     link: '/cart',
@@ -158,7 +121,7 @@ export const mobile_menu = [
     ],
   },
   {
-    id: 4,
+    id: 3,
     sub_menu: true,
     title: 'More Pages',
     link: '/login',
