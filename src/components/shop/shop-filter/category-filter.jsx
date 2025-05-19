@@ -19,12 +19,8 @@ const CategoryFilter = ({setCurrPage,shop_right=false}) => {
   const handleCategoryRoute = (title) => {
     setCurrPage(1);
     router.push(
-      `/${shop_right?'shop-right-sidebar':'shop'}?category=${title
-        .toLowerCase()
-        .replace("&", "")
-        .split(" ")
-        .join("-")}`
-        )
+      `/${shop_right?'shop-right-sidebar':'shop'}?category=${(title || "").toLowerCase().replace("&", "").split(" ").join("-")}`
+    )
     dispatch(handleFilterSidebarClose());
   }
   // decide what to render
@@ -48,7 +44,7 @@ const CategoryFilter = ({setCurrPage,shop_right=false}) => {
           style={{ cursor: "pointer" }}
           className={
             category ===
-            item.parent.toLowerCase().replace("&", "").split(" ").join("-")
+            ((item.parent || "").toLowerCase().replace("&", "").split(" ").join("-"))
               ? "active"
               : ""
           }

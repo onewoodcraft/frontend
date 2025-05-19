@@ -16,11 +16,7 @@ const PrdCategoryList = () => {
   // handle category route
   const handleCategoryRoute = (title) => {
     router.push(
-      `/shop?category=${title
-        .toLowerCase()
-        .replace("&", "")
-        .split(" ")
-        .join("-")}`
+      `/shop?category=${(title || "").toLowerCase().replace("&", "").split(" ").join("-")}`
     )
   }
   // decide what to render
