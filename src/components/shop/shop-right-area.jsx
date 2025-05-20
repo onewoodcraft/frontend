@@ -13,27 +13,27 @@ import ShopTopRight from "./shop-top-right";
 import ResetButton from "./shop-filter/reset-button";
 
 const ShopRightArea = ({
-  all_products,
-  products,
+  all_products = [],
+  products = [],
   otherProps,
   right_side
 }) => {
   const { priceFilterValues, selectHandleFilter, currPage, setCurrPage } =
     otherProps;
-  const [filteredRows, setFilteredRows] = useState(products);
+  const [filteredRows, setFilteredRows] = useState(Array.isArray(products) ? products : []);
   const [pageStart, setPageStart] = useState(0);
   const [countOfPage, setCountOfPage] = useState(12);
 
   const paginatedData = (items, startPage, pageCount) => {
-    setFilteredRows(items);
+    setFilteredRows(Array.isArray(items) ? items : []);
     setPageStart(startPage);
     setCountOfPage(pageCount);
   };
 
-  // max price
-  const maxPrice = all_products.reduce((max, product) => {
-    return product.price > max ? product.price : max;
-  }, 0);
+  // max price with safe array check
+  const maxPrice = Array.isArray(all_products) ? all_products.reduce((max, product) => {
+    return (product?.price || 0) > max ? (product?.price || 0) : max;
+  }, 0) : 0;
   return (
     <>
       <section className="tp-shop-area pb-120">

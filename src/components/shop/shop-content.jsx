@@ -13,23 +13,23 @@ import ShopTopLeft from "./shop-top-left";
 import ShopTopRight from "./shop-top-right";
 import ResetButton from "./shop-filter/reset-button";
 
-const ShopContent = ({all_products,products,otherProps,shop_right,hidden_sidebar,selectedCategory,selectHandleCategory}) => {
+const ShopContent = ({all_products=[],products=[],otherProps,shop_right,hidden_sidebar,selectedCategory,selectHandleCategory}) => {
   const {priceFilterValues,selectHandleFilter,currPage,setCurrPage} = otherProps;
   const {setPriceValue} = priceFilterValues || {};
-  const [filteredRows, setFilteredRows] = useState(products);
+  const [filteredRows, setFilteredRows] = useState(Array.isArray(products) ? products : []);
   const [pageStart, setPageStart] = useState(0);
   const [countOfPage, setCountOfPage] = useState(12);
 
   const paginatedData = (items, startPage, pageCount) => {
-    setFilteredRows(items);
+    setFilteredRows(Array.isArray(items) ? items : []);
     setPageStart(startPage);
     setCountOfPage(pageCount);
   };
 
-  // max price
-  const maxPrice = all_products.reduce((max, product) => {
-    return product.price > max ? product.price : max;
-  }, 0);
+  // max price with safe array check
+  const maxPrice = Array.isArray(all_products) ? all_products.reduce((max, product) => {
+    return (product?.price || 0) > max ? (product?.price || 0) : max;
+  }, 0) : 0;
   return (
     <>
      <section className="tp-shop-area pb-120">

@@ -25,9 +25,9 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
 
   // Load the maximum price once the products have been loaded
   useEffect(() => {
-    if (!isLoading && !isError && products?.data?.length > 0) {
+    if (!isLoading && !isError && Array.isArray(products?.data) && products.data.length > 0) {
       const maxPrice = products.data.reduce((max, product) => {
-        return product.price > max ? product.price : max;
+        return (product?.price || 0) > max ? (product?.price || 0) : max;
       }, 0);
       setPriceValue([0, maxPrice]);
     }
@@ -49,7 +49,6 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     setCurrPage(1);
     setSelectedCategory(item.value);
     if (item.value === "") {
-      // Remove category param
       router.push(`/${shop_right ? 'shop-right-sidebar' : 'shop'}`);
     } else {
       router.push(`/${shop_right ? 'shop-right-sidebar' : 'shop'}?category=${item.value.toLowerCase().replace("&", "").split(" ").join("-")}`);
@@ -69,43 +68,43 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     selectedCategory,
     selectHandleCategory,
   };
+
   // decide what to render
   let content = null;
 
   if (isLoading) {
     content = <ShopLoader loading={isLoading}/>;
   }
-  if (!isLoading && isError) {
+  else if (!isLoading && isError) {
     content = <div className="pb-80 text-center">
-      <ErrorMsg msg="There was an error" />
+      <ErrorMsg msg="There was an error loading products" />
     </div>;
   }
-  if (!isLoading && !isError && products?.data?.length === 0) {
+  else if (!isLoading && !isError && (!products?.data || !Array.isArray(products.data) || products.data.length === 0)) {
     content = <ErrorMsg msg="No Products found!" />;
   }
-  if (!isLoading && !isError && Array.isArray(products?.data) && products.data.length > 0) {
+  else if (!isLoading && !isError && Array.isArray(products?.data) && products.data.length > 0) {
     // products
-    let product_items = Array.isArray(products.data) ? [...products.data] : [];
+    let product_items = [...products.data];
+
     // select short filtering
     if (selectValue) {
       if (selectValue === "Default Sorting") {
-        product_items = Array.isArray(products.data) ? [...products.data] : [];
+        product_items = [...products.data];
       } else if (selectValue === "Low to High") {
-        product_items = Array.isArray(products.data) ? products.data
+        product_items = product_items
           .slice()
-          .sort((a, b) => (a?.price || 0) - (b?.price || 0)) : [];
+          .sort((a, b) => (a?.price || 0) - (b?.price || 0));
       } else if (selectValue === "High to Low") {
-        product_items = Array.isArray(products.data) ? products.data
+        product_items = product_items
           .slice()
-          .sort((a, b) => (b?.price || 0) - (a?.price || 0)) : [];
+          .sort((a, b) => (b?.price || 0) - (a?.price || 0));
       } else if (selectValue === "New Added") {
-        product_items = Array.isArray(products.data) ? products.data
+        product_items = product_items
           .slice()
-          .sort((a, b) => new Date(b?.createdAt || 0) - new Date(a?.createdAt || 0)) : [];
+          .sort((a, b) => new Date(b?.createdAt || 0) - new Date(a?.createdAt || 0));
       } else if (selectValue === "On Sale") {
-        product_items = Array.isArray(products.data) ? products.data.filter((p) => (p?.discount || 0) > 0) : [];
-      } else {
-        product_items = Array.isArray(products.data) ? [...products.data] : [];
+        product_items = product_items.filter((p) => (p?.discount || 0) > 0);
       }
     }
 
@@ -135,16 +134,10 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     // color filter
     if (filterColor) {
       product_items = product_items.filter((product) => {
-        for (let i = 0; i < product.imageURLs.length; i++) {
-          const color = product.imageURLs[i]?.color;
-          if (
-            color &&
-            (color?.name || "").toLowerCase().split(" ").join("-") === filterColor
-          ) {
-            return true; // match found, include product in result
-          }
-        }
-        return false; // no match found, exclude product from result
+        if (!Array.isArray(product?.imageURLs)) return false;
+        return product.imageURLs.some(img => 
+          (img?.color?.name || "").toLowerCase().split(" ").join("-") === filterColor
+        );
       });
     }
 
@@ -152,16 +145,15 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
     if (brand) {
       product_items = product_items.filter(
         (p) =>
-          (p.brand?.name || "").toLowerCase().split(" ").join("-").replace("&", "") ===
+          (p?.brand?.name || "").toLowerCase().split(" ").join("-").replace("&", "") ===
           brand
       );
     }
 
     if(minPrice && maxPrice){
-      product_items = product_items.filter((p) => Number(p.price) >= Number(minPrice) && 
-      Number(p.price) <= Number(maxPrice))
+      product_items = product_items.filter((p) => (Number(p?.price) || 0) >= Number(minPrice) && 
+      (Number(p?.price) || 0) <= Number(maxPrice))
     }
-    
 
     content = (
       <>
@@ -182,11 +174,6 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
       </>
     );
   }
-
-
-
- 
-
 
   return (
     <>
