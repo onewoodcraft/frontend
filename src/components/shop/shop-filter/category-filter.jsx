@@ -38,18 +38,18 @@ const CategoryFilter = ({setCurrPage,shop_right=false}) => {
   if (!isLoading && !isError && Array.isArray(categories?.result) && categories.result.length > 0) {
     const category_items = categories.result;
     content = category_items.map((item) => (
-      <li key={item._id}>
+      <li key={item?._id || Math.random()}>
         <a
-          onClick={() => handleCategoryRoute(item.parent)}
+          onClick={() => handleCategoryRoute(item?.parent || '')}
           style={{ cursor: "pointer" }}
           className={
             category ===
-            (item.parent || "").toLowerCase().replace("&", "").split(" ").join("-")
+            (item?.parent || "").toLowerCase().replace("&", "").split(" ").join("-")
               ? "active"
               : ""
           }
         >
-          {item.parent} <span>{Array.isArray(item.products) ? item.products.length : 0}</span>
+          {item?.parent || ''} <span>{Array.isArray(item?.products) ? item.products.length : 0}</span>
         </a>
       </li>
     ));

@@ -30,17 +30,20 @@ const ProductBrand = ({setCurrPage,shop_right=false}) => {
   } else if (!isLoading && !isError && brands?.result?.length === 0) {
     content = <ErrorMsg msg="No Brands found!" />;
   } else if (!isLoading && !isError && brands?.result?.length > 0) {
-    const all_brands = brands.result;
-    const sortedBrands = all_brands.slice().sort((a, b) => b.products.length - a.products.length);
+    const all_brands = Array.isArray(brands.result) ? brands.result : [];
+    const sortedBrands = all_brands.slice().sort((a, b) => 
+      (Array.isArray(b?.products) ? b.products.length : 0) - 
+      (Array.isArray(a?.products) ? a.products.length : 0)
+    );
     const brand_items = sortedBrands.slice(0,6);
     
     content = brand_items.map((b) => (
-      <div key={b._id} className="tp-shop-widget-brand-item">
+      <div key={b?._id || Math.random()} className="tp-shop-widget-brand-item">
         <a
-          onClick={() => handleBrandRoute(b.name)}
+          onClick={() => handleBrandRoute(b?.name || '')}
           style={{ cursor: "pointer" }}
         >
-          <Image src={b.logo} alt="brand" width={60} height={50} />
+          <Image src={b?.logo || ''} alt="brand" width={60} height={50} />
         </a>
       </div>
     ));

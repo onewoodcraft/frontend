@@ -100,13 +100,15 @@ const CompareArea = () => {
                       {/* Rating */}
                       <tr>
                         <th>Rating</th>
-                        {compareItems.map(item => (
-                          <td key={item._id}>
+                        {Array.isArray(compareItems) && compareItems.map(item => (
+                          <td key={item?._id || Math.random()}>
                             <div className="tp-compare-rating">
                               <Rating
                                 allowFraction
                                 size={16}
-                                initialValue={item.reviews.length > 0 ? item.reviews.reduce((acc, review) => acc + review.rating, 0) / item.reviews.length : 0}
+                                initialValue={Array.isArray(item?.reviews) && item.reviews.length > 0 
+                                  ? item.reviews.reduce((acc, review) => acc + (review?.rating || 0), 0) / item.reviews.length 
+                                  : 0}
                                 readonly={true}
                               />
                             </div>
@@ -116,10 +118,10 @@ const CompareArea = () => {
                       {/* Remove */}
                       <tr>
                         <th>Remove</th>
-                        {compareItems.map(item => (
-                          <td key={item._id}>
+                        {Array.isArray(compareItems) && compareItems.map(item => (
+                          <td key={item?._id || Math.random()}>
                             <div className="tp-compare-remove">
-                              <button onClick={()=>handleRemoveComparePrd({title:item.title,id:item._id })}>
+                              <button onClick={()=>handleRemoveComparePrd({title:item?.title || '', id:item?._id || ''})}>
                                 <i className="fal fa-trash-alt"></i>
                               </button>
                             </div>

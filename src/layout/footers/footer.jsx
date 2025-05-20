@@ -18,11 +18,6 @@ const Footer = ({ style_2 = false, style_3 = false,primary_style=false }) => {
               <div className="col-xl-4 col-lg-3 col-md-4 col-sm-6">
                 <div className="tp-footer-widget footer-col-1 mb-50">
                   <div className="tp-footer-widget-content">
-                    <div className="tp-footer-logo">
-                      <Link href="/">
-                        <Image src={logo} alt="logo" />
-                      </Link>
-                    </div>
                     <p className="tp-footer-desc">We are a team of designers and developers that create high quality WordPress</p>
                     <div className="tp-footer-social">
                       {social_data.map(s => <a href={s.link} key={s.id} target="_blank">

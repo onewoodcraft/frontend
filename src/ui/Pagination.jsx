@@ -9,8 +9,9 @@ const Pagination = ({
   currPage,
   setCurrPage,
 }) => {
+  const safeItems = Array.isArray(items) ? items : [];
   const pageStart = (currPage - 1) * countOfPage;
-  const totalPage = Math.ceil(items.length / countOfPage);
+  const totalPage = Math.ceil(safeItems.length / countOfPage);
 
   function setPage(idx) {
     if (idx <= 0 || idx > totalPage) {
@@ -18,13 +19,13 @@ const Pagination = ({
     }
     setCurrPage(idx);
     window.scrollTo(0, 0);
-    paginatedData(items, pageStart, countOfPage);
+    paginatedData(safeItems, pageStart, countOfPage);
   }
 
   useEffect(() => {
-    paginatedData(items, pageStart, countOfPage);
+    paginatedData(safeItems, pageStart, countOfPage);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items, pageStart, countOfPage]);
+  }, [safeItems, pageStart, countOfPage]);
 
   return (
     <nav>

@@ -85,34 +85,34 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
   }
   if (!isLoading && !isError && Array.isArray(products?.data) && products.data.length > 0) {
     // products
-    let product_items = Array.isArray(products.data) ? products.data : [];
+    let product_items = Array.isArray(products.data) ? [...products.data] : [];
     // select short filtering
     if (selectValue) {
       if (selectValue === "Default Sorting") {
-        product_items = Array.isArray(products.data) ? products.data : [];
+        product_items = Array.isArray(products.data) ? [...products.data] : [];
       } else if (selectValue === "Low to High") {
         product_items = Array.isArray(products.data) ? products.data
           .slice()
-          .sort((a, b) => Number(a.price) - Number(b.price)) : [];
+          .sort((a, b) => (a?.price || 0) - (b?.price || 0)) : [];
       } else if (selectValue === "High to Low") {
         product_items = Array.isArray(products.data) ? products.data
           .slice()
-          .sort((a, b) => Number(b.price) - Number(a.price)) : [];
+          .sort((a, b) => (b?.price || 0) - (a?.price || 0)) : [];
       } else if (selectValue === "New Added") {
         product_items = Array.isArray(products.data) ? products.data
           .slice()
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) : [];
+          .sort((a, b) => new Date(b?.createdAt || 0) - new Date(a?.createdAt || 0)) : [];
       } else if (selectValue === "On Sale") {
-        product_items = Array.isArray(products.data) ? products.data.filter((p) => p.discount > 0) : [];
+        product_items = Array.isArray(products.data) ? products.data.filter((p) => (p?.discount || 0) > 0) : [];
       } else {
-        product_items = Array.isArray(products.data) ? products.data : [];
+        product_items = Array.isArray(products.data) ? [...products.data] : [];
       }
     }
 
     // status filter
     if (status) {
       if (status === "on-sale") {
-        product_items = product_items.filter((p) => p?.discount > 0);
+        product_items = product_items.filter((p) => (p?.discount || 0) > 0);
       } else if (status === "in-stock") {
         product_items = product_items.filter((p) => p?.status === "in-stock");
       }
