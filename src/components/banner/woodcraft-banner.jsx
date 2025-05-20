@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, EffectFade, Navigation } from 'swiper/modules';
+import { Pagination, EffectFade, Navigation, Autoplay } from 'swiper/modules';
 // internal
 import slider_img_1 from '@assets/img/slider/2/slider-1.png';
 import slider_img_2 from '@assets/img/slider/2/slider-2.png';
@@ -47,13 +47,17 @@ const slider_setting = {
     el: ".tp-slider-2-dot",
     clickable: true,
   },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
 }
 
 const WoodcraftBanner = () => {
   return (
     <>
       <section className="tp-slider-area p-relative z-index-1">
-        <Swiper {...slider_setting} modules={[Pagination, Navigation, EffectFade]} className="tp-slider-active-2 swiper-container">
+        <Swiper {...slider_setting} modules={[Pagination, Navigation, EffectFade, Autoplay]} className="tp-slider-active-2 swiper-container">
           {slider_data.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="tp-slider-item-2 tp-slider-height-2 p-relative grey-bg-5 d-flex align-items-end">
