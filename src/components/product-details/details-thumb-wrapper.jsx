@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import PopupVideo from "../common/popup-video";
+import { getCloudinaryUrl } from '@/utils/cloudinary';
 
 const DetailsThumbWrapper = ({
   imageURLs = [],
@@ -37,7 +38,7 @@ const DetailsThumbWrapper = ({
                 onClick={() => handleImageActive(item)}
               >
                 <Image
-                  src={item.img || '/assets/img/product/quick-view-1.jpg'}
+                  src={getCloudinaryUrl(item.img)}
                   alt="product image"
                   width={78}
                   height={100}
@@ -54,7 +55,7 @@ const DetailsThumbWrapper = ({
           <div className="tab-pane fade show active">
             <div className="tp-product-details-nav-main-thumb p-relative">
               <Image
-                src={activeImg || '/assets/img/product/quick-view-1.jpg'}
+                src={getCloudinaryUrl(activeImg)}
                 alt="product image"
                 width={imgWidth}
                 height={imgHeight}

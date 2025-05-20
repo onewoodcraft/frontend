@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import { getCloudinaryUrl } from '@/utils/cloudinary';
 
 const ProductSmItem = ({ product }) => {
   const {_id, img, category, title,price, reviews } = product || {};
@@ -23,7 +24,7 @@ const ProductSmItem = ({ product }) => {
       <div className="tp-product-thumb mr-25 fix">
         <Link href={`/product-details/${_id}`}>
           <Image
-            src={img}
+            src={getCloudinaryUrl(img)}
             alt="product img"
             width={140}
             height={140}

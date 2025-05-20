@@ -9,6 +9,7 @@ import { handleProductModal } from "@/redux/features/productModalSlice";
 import { add_cart_product } from "@/redux/features/cartSlice";
 import { add_to_wishlist } from "@/redux/features/wishlist-slice";
 import { add_to_compare } from "@/redux/features/compareSlice";
+import { getCloudinaryUrl } from '@/utils/cloudinary';
 
 const ProductItem = ({ product, style_2 = false }) => {
   const { _id, img, category, title, reviews, price, discount, tags, status } = product || {};
@@ -50,7 +51,7 @@ const ProductItem = ({ product, style_2 = false }) => {
       <div className="tp-product-thumb-2 p-relative z-index-1 fix">
         <Link href={`/product-details/${_id}`}>
           <Image
-            src={img}
+            src={getCloudinaryUrl(img)}
             alt="product img"
             width={284}
             height={302}

@@ -10,6 +10,7 @@ import Timer from "@/components/common/timer";
 import { handleProductModal } from "@/redux/features/productModalSlice";
 import { add_cart_product } from "@/redux/features/cartSlice";
 import { add_to_wishlist } from "@/redux/features/wishlist-slice";
+import { getCloudinaryUrl } from '@/utils/cloudinary';
 
 const ProductItem = ({ product, offer_style = false }) => {
   const { _id, img, category, title, reviews, price, discount,status,offerDate } = product || {};
@@ -49,7 +50,7 @@ const ProductItem = ({ product, offer_style = false }) => {
         <div className="tp-product-thumb p-relative fix">
           <Link href={`/product-details/${_id}`}>
             <Image
-              src={img}
+              src={getCloudinaryUrl(img)}
               width="0"
               height="0"
               sizes="100vw"

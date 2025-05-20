@@ -7,6 +7,7 @@ import { AddCart, Cart, QuickView, Wishlist } from "@/svg";
 import { handleProductModal } from "@/redux/features/productModalSlice";
 import { add_cart_product } from "@/redux/features/cartSlice";
 import { add_to_wishlist } from "@/redux/features/wishlist-slice";
+import { getCloudinaryUrl } from '@/utils/cloudinary';
 
 const ProductItem = ({ product }) => {
   const { _id, img, title, price, tags,status } = product || {};
@@ -30,7 +31,7 @@ const ProductItem = ({ product }) => {
     <div className="tp-product-item-4 p-relative mb-40">
       <div className="tp-product-thumb-4 p-relative fix">
         <Link href={`/product-details/${_id}`}>
-          <Image src={img} alt="product img" width={284} height={352} />
+          <Image src={getCloudinaryUrl(img)} alt="product img" width={284} height={352} />
         </Link>
         <div className="tp-product-badge">
           {status === 'out-of-stock' && <span className="product-hot">out-stock</span>}
