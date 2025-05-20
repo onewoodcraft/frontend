@@ -7,7 +7,7 @@ import ProductItem from './product-item';
 import { HomeTwoPrdLoader } from '@/components/loader';
 
 // tabs
-const tabs = ["All Collection", "Shoes", "Clothing", "Bags"];
+const tabs = ["All Collection", "Furniture", "Decor", "Accessories"];
 
 const ProductArea = () => {
   const { data: products, isError, isLoading } = useGetAllProductsQuery();
@@ -44,10 +44,10 @@ const ProductArea = () => {
             <div className="col-xl-12">
               <div className="tp-section-title-wrapper-2 text-center mb-35">
                 <span className="tp-section-title-pre-2">
-                  All Product Shop
+                  Handcrafted Collection
                   <TextShapeLine />
                 </span>
-                <h3 className="tp-section-title-2">Customer Favorite Style Product</h3>
+                <h3 className="tp-section-title-2">Exclusive Woodcraft Masterpieces</h3>
               </div>
             </div>
           </div>

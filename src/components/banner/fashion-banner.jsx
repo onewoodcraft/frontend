@@ -16,20 +16,20 @@ import thumb_shape_2 from '@assets/img/slider/2/shape/shape-3.png';
 const slider_data = [
   {
     id: 1,
-    subtitle: 'New Arrivals 2023',
-    title: 'The Clothing Collection',
+    subtitle: 'New Arrivals 2024',
+    title: 'Handcrafted Wood Collection',
     img: slider_img_1,
   },
   {
     id: 2,
-    subtitle: 'Best Selling 2023',
-    title: 'The Summer Collection',
+    subtitle: 'Best Selling 2024',
+    title: 'Premium Woodcraft Designs',
     img: slider_img_2,
   },
   {
     id: 3,
-    subtitle: 'Winter Has Arrived',
-    title: 'Amazing New designs',
+    subtitle: 'Artisan Collection',
+    title: 'Exclusive Wooden Masterpieces',
     img: slider_img_3,
   },
 ]
@@ -49,7 +49,7 @@ const slider_setting = {
   },
 }
 
-const FashionBanner = () => {
+const WoodcraftBanner = () => {
   return (
     <>
       <section className="tp-slider-area p-relative z-index-1">
@@ -67,7 +67,7 @@ const FashionBanner = () => {
                         <span>{item.subtitle}</span>
                         <h3 className="tp-slider-title-2">{item.title}</h3>
                         <div className="tp-slider-btn-2">
-                          <Link href="/shop" className="tp-btn tp-btn-border">Shop Collection</Link>
+                          <Link href="/shop" className="tp-btn tp-btn-border">Explore Collection</Link>
                         </div>
                       </div>
                     </div>
@@ -95,4 +95,4 @@ const FashionBanner = () => {
   );
 };
 
-export default FashionBanner;
+export default WoodcraftBanner;

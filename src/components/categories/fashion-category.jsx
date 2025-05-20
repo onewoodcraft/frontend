@@ -7,7 +7,7 @@ import { ArrowRightLong } from "@/svg";
 import { HomeTwoCateLoader } from "../loader";
 import { useGetProductTypeCategoryQuery } from "@/redux/features/categoryApi";
 
-const FashionCategory = () => {
+const WoodcraftCategory = () => {
   const {
     data: categories,
     isLoading,
@@ -59,7 +59,7 @@ const FashionCategory = () => {
               onClick={() => handleCategoryRoute(item.parent)}
               className="cursor-pointer tp-btn tp-btn-border tp-btn-border-sm"
             >
-              Shop Now <ArrowRightLong />
+              Explore Now <ArrowRightLong />
             </a>
           </div>
         </div>
@@ -77,4 +77,4 @@ const FashionCategory = () => {
   );
 };
 
-export default FashionCategory;
+export default WoodcraftCategory;
