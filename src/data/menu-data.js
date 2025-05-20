@@ -1,4 +1,6 @@
 import home_2 from '@assets/img/menu/menu-home-2.jpg';
+const menu_product_img_1 = '/assets/img/menu/product/menu-product-img-1.jpg';
+const menu_product_img_2 = '/assets/img/menu/product/menu-product-img-2.jpg';
 
 const menu_data = [
   {
@@ -11,12 +13,12 @@ const menu_data = [
         title: 'Shop Categories',
         link: '/shop',
         mega_menus: [
-          { title: 'Chopping Boards', link: '/shop?category=chopping-boards' },
-          { title: 'Platters', link: '/shop?category=platters' },
-          { title: 'Trays', link: '/shop?category=trays' },
-          { title: 'Planters', link: '/shop?category=planters' },
-          { title: 'Bowls', link: '/shop?category=bowls' },
-          { title: 'Cake Stands', link: '/shop?category=cake-stands' },
+          { title: 'Chopping Boards', link: '/shop?category=chopping-boards', img: menu_product_img_1 },
+          { title: 'Platters', link: '/shop?category=platters', img: menu_product_img_1 },
+          { title: 'Trays', link: '/shop?category=trays', img: menu_product_img_1 },
+          { title: 'Planters', link: '/shop?category=planters', img: menu_product_img_2 },
+          { title: 'Bowls', link: '/shop?category=bowls', img: menu_product_img_2 },
+          { title: 'Cake Stands', link: '/shop?category=cake-stands', img: menu_product_img_2 },
           { title: 'Gifting', link: '/shop?category=gifting' },
         ]
       },

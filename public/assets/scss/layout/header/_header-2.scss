@@ -263,3 +263,28 @@
   height: auto;
   width: 100%;
 }
+
+.mega-menu-main-category {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s, background 0.2s;
+  font-weight: 500;
+}
+.mega-menu-main-category:hover {
+  background: #f5f5f5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.mega-menu-main-category-img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 12px;
+  background: #f3f3f3;
+  border: 1px solid #eee;
+}

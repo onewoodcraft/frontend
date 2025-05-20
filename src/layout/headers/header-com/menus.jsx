@@ -41,8 +41,13 @@ const Menus = () => {
                   </Link>
                   <ul className="tp-submenu">
                     {p.mega_menus.map((m, i) => (
-                      <li key={i}>
-                        <Link href={m.link}>{m.title}</Link>
+                      <li key={i} className="mega-menu-main-category">
+                        <Link href={m.link}>
+                          {m.img && (
+                            <img src={m.img} alt={m.title + ' image'} className="mega-menu-main-category-img" />
+                          )}
+                          {m.title}
+                        </Link>
                       </li>
                     ))}
                   </ul>
