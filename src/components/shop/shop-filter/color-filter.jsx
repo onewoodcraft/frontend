@@ -39,14 +39,13 @@ const ColorFilter = ({setCurrPage,shop_right=false}) => {
   if (!isLoading && !isError && products?.data?.length === 0) {
     content = <ErrorMsg msg="No Products found!" />;
   }
-  if (!isLoading && !isError && products?.data?.length > 0) {
+  if (!isLoading && !isError && Array.isArray(products?.data) && products.data.length > 0) {
     const product_items = products.data;
     let allColor = [];
     product_items.forEach((product) => {
-      let uniqueColor = new Set(product.imageURLs.map((item) => item?.color));
+      let uniqueColor = new Set(Array.isArray(product.imageURLs) ? product.imageURLs.map((item) => item?.color) : []);
       allColor = [...new Set([...allColor, ...uniqueColor])];
     });
-
     let uniqueColors = [
       ...new Map(allColor.map((color) => [color?.name, color])).values(),
     ];
@@ -60,7 +59,7 @@ const ColorFilter = ({setCurrPage,shop_right=false}) => {
                 id={item.name}
                 checked={
                   color ===
-                  item.name.toLowerCase().replace("&", "").split(" ").join("-")
+                  (item.name || "").toLowerCase().replace("&", "").split(" ").join("-")
                     ? "checked"
                     : false
                 }
@@ -79,10 +78,12 @@ const ColorFilter = ({setCurrPage,shop_right=false}) => {
             </div>
             <span className="tp-shop-widget-checkbox-circle-number">
               {
-                product_items
-                  .map((p) => p.imageURLs)
-                  .flat()
-                  .filter((i) => i?.color?.name === item?.name).length
+                Array.isArray(product_items)
+                  ? product_items
+                      .map((p) => Array.isArray(p.imageURLs) ? p.imageURLs : [])
+                      .flat()
+                      .filter((i) => i?.color?.name === item?.name).length
+                  : 0
               }
             </span>
           </li>

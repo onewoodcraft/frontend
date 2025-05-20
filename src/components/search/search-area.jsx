@@ -52,7 +52,7 @@ export default function SearchArea() {
     }
     if (searchText && productType) {
       product_items = all_products.filter(
-        (prd) => (prd.productType || "").toLowerCase() === productType.toLowerCase()
+        (prd) => (prd.productType || "").toLowerCase() === (productType || "").toLowerCase()
       ).filter(p => (p.title || "").toLowerCase().includes(searchText.toLowerCase()));
     }
      // Price low to high
@@ -67,7 +67,7 @@ export default function SearchArea() {
         .slice()
         .sort((a, b) => Number(b.price) - Number(a.price));
     }
-    if (product_items.length === 0) {
+    if (!Array.isArray(product_items) || product_items.length === 0) {
       content = (
         <div className="text-center pt-80 pb-80">
           <h3>Sorry, nothing matched <span style={{color:'#0989FF'}}>{searchText}</span> search terms</h3>
@@ -89,7 +89,7 @@ export default function SearchArea() {
 
                           <div className="tp-shop-top-left d-flex align-items-center ">
                             <div className="tp-shop-top-result">
-                              <p>Showing 1–{product_items.length} of {all_products.length} results</p>
+                              <p>Showing 1–{Array.isArray(product_items) ? product_items.length : 0} of {Array.isArray(all_products) ? all_products.length : 0} results</p>
                             </div>
                           </div>
 

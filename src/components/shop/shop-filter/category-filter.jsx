@@ -35,7 +35,7 @@ const CategoryFilter = ({setCurrPage,shop_right=false}) => {
   if (!isLoading && !isError && categories?.result?.length === 0) {
     content = <ErrorMsg msg="No Category found!" />;
   }
-  if (!isLoading && !isError && categories?.result?.length > 0) {
+  if (!isLoading && !isError && Array.isArray(categories?.result) && categories.result.length > 0) {
     const category_items = categories.result;
     content = category_items.map((item) => (
       <li key={item._id}>
@@ -44,7 +44,7 @@ const CategoryFilter = ({setCurrPage,shop_right=false}) => {
           style={{ cursor: "pointer" }}
           className={
             category ===
-            ((item.parent || "").toLowerCase().replace("&", "").split(" ").join("-"))
+            (item.parent || "").toLowerCase().replace("&", "").split(" ").join("-")
               ? "active"
               : ""
           }

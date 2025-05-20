@@ -83,7 +83,7 @@ const ShopArea = ({shop_right=false,hidden_sidebar=false}) => {
   if (!isLoading && !isError && products?.data?.length === 0) {
     content = <ErrorMsg msg="No Products found!" />;
   }
-  if (!isLoading && !isError && products?.data?.length > 0) {
+  if (!isLoading && !isError && Array.isArray(products?.data) && products.data.length > 0) {
     // products
     let product_items = Array.isArray(products.data) ? products.data : [];
     // select short filtering
