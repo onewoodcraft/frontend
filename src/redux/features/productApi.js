@@ -25,7 +25,7 @@ export const productApi = apiSlice.injectEndpoints({
     }),
     // get single product
     getProduct: builder.query({
-      query: (id) => `/api/product/single-product/${id}`,
+      query: (id) => `/api/product/${id}`,
       providesTags: (result, error, arg) => [{ type: "Product", id: arg }],
       invalidatesTags: (result, error, arg) => [
         { type: "RelatedProducts", id:arg },
