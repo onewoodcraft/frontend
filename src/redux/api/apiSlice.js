@@ -4,6 +4,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Use environment variable with fallback
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://backend-8rnq.onrender.com';
 
+// Log the current API URL for debugging
+console.log("Frontend API Base URL:", baseUrl);
+
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
